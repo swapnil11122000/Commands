@@ -38,3 +38,19 @@ Connectionstring
 "ConnectionStrings": {
   "DefaultConnection": "Server=YOUR_SERVER;Database=YOUR_DB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 }
+
+
+
+builder.Services.AddControllers();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddControllersWithViews(); // ✅ Registers services for views, Razor, TempData
+
+
+app.UseRouting();
+
+app.UseAuthentication();  // Add this if you're using JWT/cookie auth
+app.UseAuthorization();   // 🔥 Required if using [Authorize] attribute
+app.MapDefaultControllerRoute();
+
+
+app.MapControllers();
